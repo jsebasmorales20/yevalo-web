@@ -1,14 +1,18 @@
+import { Suspense, lazy } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import MarqueeStrip from './components/MarqueeStrip'
 import DisplaySection from './components/DisplaySection'
-import FeaturesSection from './components/FeaturesSection'
-import InstagramSection from './components/InstagramSection'
-import GlobeSection from './components/GlobeSection'
-import Testimonios from './components/Testimonios'
-import Pricing from './components/Pricing'
-import FAQ from './components/FAQ'
-import CtaFooter from './components/CtaFooter'
+
+const FeaturesSection  = lazy(() => import('./components/FeaturesSection'))
+const InstagramSection = lazy(() => import('./components/InstagramSection'))
+const GlobeSection     = lazy(() => import('./components/GlobeSection'))
+const Testimonios      = lazy(() => import('./components/Testimonios'))
+const Pricing          = lazy(() => import('./components/Pricing'))
+const FAQ              = lazy(() => import('./components/FAQ'))
+const CtaFooter        = lazy(() => import('./components/CtaFooter'))
+
+const SectionFallback  = () => <div className="w-full py-24" />
 
 // Orange DisplaySection — brand stickers Yevalo
 import stickerMalasVibras    from '../imagenes yevalo/WhatsApp Image 2026-04-23 at 1.18.13 PM (5).jpeg'
@@ -45,19 +49,16 @@ export default function App() {
         photoDuration={36}
       />
 
-      <FeaturesSection />
-
-      <InstagramSection />
-
-      <GlobeSection />
-
-      <Testimonios />
+      <Suspense fallback={<SectionFallback />}><FeaturesSection /></Suspense>
+      <Suspense fallback={<SectionFallback />}><InstagramSection /></Suspense>
+      <Suspense fallback={<SectionFallback />}><GlobeSection /></Suspense>
+      <Suspense fallback={<SectionFallback />}><Testimonios /></Suspense>
 
       <MarqueeStrip variant="dark" />
 
-      <Pricing />
-      <FAQ />
-      <CtaFooter />
+      <Suspense fallback={<SectionFallback />}><Pricing /></Suspense>
+      <Suspense fallback={<SectionFallback />}><FAQ /></Suspense>
+      <Suspense fallback={<SectionFallback />}><CtaFooter /></Suspense>
     </div>
   )
 }

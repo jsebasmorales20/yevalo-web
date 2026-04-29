@@ -298,6 +298,8 @@ export function YevaloHero() {
                   src={imgCenter}
                   alt="Mujer despertando feliz con Yevalo"
                   className="w-full aspect-[3/4] object-cover object-top"
+                  fetchPriority="high"
+                  decoding="async"
                 />
                 {/* Gradient overlay with badge */}
                 <div

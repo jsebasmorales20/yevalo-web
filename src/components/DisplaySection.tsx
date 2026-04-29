@@ -66,6 +66,8 @@ export default function DisplaySection({
                   key={i}
                   src={src}
                   alt=""
+                  loading="lazy"
+                  decoding="async"
                   style={{
                     height: isStickers ? '260px' : '40vh',
                     width: isStickers ? '260px' : 'auto',
