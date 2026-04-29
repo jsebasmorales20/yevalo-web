@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 215 40% 8%;
+  --card: 0 0% 97%;
+  --card-foreground: 215 40% 8%;
+  --primary: 215 40% 8%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 97%;
+  --secondary-foreground: 215 40% 8%;
+  --muted: 0 0% 97%;
+  --muted-foreground: 215 40% 8%;
+  --accent: 26 91% 50%;
+  --accent-foreground: 0 0% 100%;
+  --accent-2: 181 80% 36%;
+  --radius: 9999px;
+  --glass-bg: rgba(255, 255, 255, 0.62);
+  --glass-border: rgba(255, 255, 255, 0.80);
+  --glass-blur: 20px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .liquid-glass {
+    background: rgba(255, 255, 255, 0.62);
+    background-blend-mode: normal;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.78);
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.05),
+      0 4px 16px rgba(0, 0, 0, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.90);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .liquid-glass-strong {
+    background: rgba(255, 255, 255, 0.82);
+    background-blend-mode: normal;
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.92);
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.07),
+      0 8px 32px rgba(0, 0, 0, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scroll-indicator-line {
+    width: 1px;
+    height: 32px;
+    background: rgba(20, 30, 50, 0.12);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .scroll-indicator-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(20, 30, 50, 0.5);
+    animation: scroll-line 1.5s infinite;
+  }
+}
+
+@keyframes scroll-line {
+  0%   { transform: translateY(-100%); opacity: 1; }
+  100% { transform: translateY(300%);  opacity: 0; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes scrollRight {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0%); }
+}
+
+@layer components {
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 35s linear infinite;
+    will-change: transform;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  .reveal-overflow {
+    overflow: hidden;
+  }
+
+  .display-text {
+    font-size: clamp(5rem, 14vw, 14rem);
+    line-height: 0.88;
+    letter-spacing: -0.03em;
+    font-weight: 900;
+  }
+}
+
+@keyframes accordion-down {
+  from { height: 0; }
+  to   { height: var(--radix-accordion-content-height); }
+}
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to   { height: 0; }
+}
+
+.animate-accordion-down { animation: accordion-down 0.22s ease-out; }
+.animate-accordion-up   { animation: accordion-up   0.22s ease-out; }
