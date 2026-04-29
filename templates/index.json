@@ -3,9 +3,17 @@
     "main": {
       "type": "main-index",
       "settings": {}
+    },
+    "instafeed-section": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_block": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {}
+        }
+      },
+      "settings": {}
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main", "instafeed-section"]
 }
